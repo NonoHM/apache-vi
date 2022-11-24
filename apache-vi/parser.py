@@ -43,12 +43,8 @@ def connexion_number():
     with open(log_path) as fp:  
         for entry in parser.parse_lines(fp):
             date_list.append(str(entry.request_time.date()))
-    # for i,j in combinations(date_list,2):
-    #     if i == j:
-    #         k+=1
-    #         date_filtered.update({i: k })
     for i in sorted(set(date_list)):
-        filtered = len(list(filter(lambda x: x == i, date_list)))
+        filtered = count_filter(i,date_list)
         date_filtered.update({i: filtered })
     return date_filtered
 
