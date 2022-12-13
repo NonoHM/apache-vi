@@ -23,6 +23,7 @@ def browser_number():
             browser_search = re.compile('|'.join(search_list),re.IGNORECASE).search(browser)
             if browser_search:
                 browser_list.append(browser_search.group(0))
+    print(browser_list)
     for i in search_list:
         a = count_browser(i, browser_list)
         browser_dict.update({i: a})

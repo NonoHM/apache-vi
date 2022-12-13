@@ -1,9 +1,9 @@
 from apachelogs import LogParser
 import re
-
-
-log_path = '../data/access.laii-9.log'
-
+from datetime import datetime
+from collections import Counter
+log_path = '../data/pydefis-ssl.access_ano.log'
+# log_path = '../data/access.laii-8.log'
 # Découper chaque partie du log selon la norme (voir docs)
 parser = LogParser("%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"")
 
@@ -48,11 +48,57 @@ def connexion_number():
         date_filtered.update({i: filtered })
     return date_filtered
 
+# Filtre les dates par semaine, 
+# Retourne le numéro de la semaine format ISO - nb total de connexions sur cette semaine
+def connexion_week(date_dict):
+    L1 = []
+    L2 = []
+    L3 = []
+    for i in date_dict:
+        date = datetime.strptime(i,"%Y-%m-%d")
+        weekd = date.isocalendar().week
+        L1.append(weekd)
+    for pairs in date_dict.values():
+        L2.append(pairs)
+    for j in range(len(L1)):
+        L3.append({L1[j]: L2[j]})
+    counter = Counter()
+    for d in L3: 
+        counter.update(d)  
+    result = dict(counter)
+    return result
+
+# Filtre les dates par mois, 
+# 2 Arguments, 1er: dictionnaire des jours, 2e: True or False.
+# False retourne le numéro du mois format ISO - nb total de connexions sur ce mois
+# True retourne le nom du mois  - nb connexions du mois 
+def connexion_month(date_dict, switch=False):
+    L1 = []
+    L2 = []
+    L3 = []
+    for i in date_dict:
+        date = datetime.strptime(i,"%Y-%m-%d")
+        if switch == True:
+            L1.append(date.ctime().split(' ')[1])
+        else:
+            monthd = date.month
+            L1.append(monthd)
+    for pairs in date_dict.values():
+        L2.append(pairs)
+    for j in range(len(L1)):
+        L3.append({L1[j]: L2[j]})
+    counter = Counter()
+    for d in L3: 
+        counter.update(d)  
+    result = dict(counter)
+    return result
+        
 
 def main():
     print(f" Le nombre de connexions par type de navigateur est: \n {browser_number()}")
     print(f" Le nombre de connexions par jour est: \n {connexion_number()}")
-
+    print(f" Le nombre de connexions par semaine est: \n {connexion_week(connexion_number())}")
+    print(f" Le nombre de connexions par mois est: \n {connexion_month(connexion_number(), True)}")
 
 if __name__ == "__main__":
     main()
