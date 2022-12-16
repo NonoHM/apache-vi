@@ -1,8 +1,8 @@
-import parser
+import av_parser
 
 
 def main():
-    print(parser.browser_number())
+    print(av_parser.browser_number())
 
 if __name__ == "__main__":
     main()
