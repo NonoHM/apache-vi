@@ -1,11 +1,11 @@
 import matplotlib.pyplot as plt
 import sys
-sys.path.append('/home/etudiant/Desktop/apache-vi/apache-vi')
-import ap_parser as pa
-date_dict = pa.connexion_number()
+sys.path.append('../apache-vi/')
+import av_parser as pa
+date_dict = pa.connection_number()
 
-dict_month = pa.connexion_month(date_dict, True)
-dict_week = pa.connexion_week(date_dict)
+dict_month = pa.connection_month(date_dict, True)
+dict_week = pa.connection_week(date_dict)
 #print in a graph the month connextion
 
 x=[]
@@ -27,7 +27,7 @@ def main():
 if __name__ == "__main__":
     main()
 
-#test :  print(pa.connexion_month(date_dict, True))
+#test :  print(pa.connection_month(date_dict, True))
 
 r=[]
 k=[]
@@ -43,7 +43,7 @@ print(k)
 def main():
 
     plt.bar(r,k)
-    plt.show(2)
+    plt.show()
 
 if __name__ == "__main__":
     main()
