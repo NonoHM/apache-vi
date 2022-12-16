@@ -1,8 +1,8 @@
-import parser.py
+import parser
 
 
 def main():
-    print(browser_number())
+    print(parser.browser_number())
 
 if __name__ == "__main__":
     main()
