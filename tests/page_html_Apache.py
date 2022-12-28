@@ -13,7 +13,7 @@ html_template = """<html>
 
 
 
-
+<img src="/home/etudiant/Desktop/apache-vi/test.png"/>
 <h2>Welcome To site de fou</h2>
 
 <p>Default code has been loaded into the Editor.</p>
@@ -26,6 +26,7 @@ html_template = """<html>
 </body>
 </html>
 """
+# the CSS code which will go in the file GFG.html
 css_template = """
 
 

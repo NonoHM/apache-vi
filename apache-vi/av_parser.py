@@ -4,7 +4,7 @@ from datetime import datetime
 from collections import Counter
 
 #default_log_path = '/home/etudiant/Desktop/apache-vi/data/pydefis-ssl.access_ano.log'
-default_log_path = '../data/access.laii-8.log'
+default_log_path = '/home/etudiant/Desktop/apache-vi/data/access.laii-8.log'
 # Découper chaque partie du log selon la norme (voir docs)
 parser = LogParser("%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"")
 
