@@ -1,0 +1,30 @@
+import matplotlib.pyplot as plt
+import sys
+sys.path.append('/home/etudiant/Desktop/apache-vi/apache-vi')
+import av_parser as pa
+date_dict = pa.connection_number()
+dict_week = pa.connection_week(date_dict)
+
+#print in a graph the month connextion
+fig, axes = plt.subplots()
+
+r=[]
+t=[]
+for key in dict_week.keys():
+    r.append(key)
+print(r)
+    
+for value in dict_week.values():
+    t.append(value)
+print(t)
+
+# for test
+def main():
+    width = 1.0
+    plt.title("connection_week")
+    axes.bar(r, t, width, align = 'center', color='b' )
+    plt.savefig('connection-week.png')
+    plt.show()
+
+if __name__ == "__main__":
+    main()
