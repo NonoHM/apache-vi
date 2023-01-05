@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2022-09-12" view-index="0" gantt-divider-location="454" resource-divider-location="300" version="3.1.3102" locale="fr_FR">
+    <description/>
+    <view zooming-state="default:7" id="gantt-chart">
+        <field id="tpd3" name="Nom" width="257" order="0"/>
+        <field id="tpd4" name="Date de début" width="97" order="1"/>
+        <field id="tpd5" name="Date de fin" width="96" order="2"/>
+        <option id="color.recent">
+            <![CDATA[#990099 #ff0000 #33ff33 #00cccc #ffcccc #66ffff #e1e1e1]]>
+        </option>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Nom" width="210" order="0"/>
+        <field id="1" name="Rôle par défaut" width="86" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="11" name="SAE 1.05 Traiter des données" meeting="false" start="2022-10-17" duration="58" complete="0" expand="true">
+            <task id="12" name="Mise en place du projet" color="#ff0000" meeting="false" start="2022-10-17" duration="18" complete="0" thirdDate="2022-10-03" thirdDate-constraint="0" expand="true">
+                <task id="0" name="Choix du projet" color="#ff0000" meeting="false" start="2022-10-17" duration="1" complete="0" thirdDate="2023-01-02" thirdDate-constraint="0" expand="true">
+                    <depend id="3" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="3" name="Vacances" color="#ff0000" meeting="false" start="2022-10-18" duration="11" complete="0" thirdDate="2023-01-02" thirdDate-constraint="0" expand="true">
+                    <depend id="1" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="1" name="Répartition des tâches" color="#ff0000" meeting="false" start="2022-11-02" duration="3" complete="0" thirdDate="2023-01-02" thirdDate-constraint="0" expand="true">
+                    <notes>
+                        <![CDATA[répartition des tâches et assimilation du projet.]]>
+                    </notes>
+                    <depend id="13" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="13" name="Mise en place de l'environnement" color="#ff0000" meeting="false" start="2022-11-07" duration="1" complete="0" thirdDate="2022-10-10" thirdDate-constraint="0" expand="true">
+                    <depend id="14" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="14" name="Recherche documentation" color="#ff0000" meeting="false" start="2022-11-08" duration="2" complete="0" thirdDate="2022-09-12" thirdDate-constraint="0" expand="true">
+                    <depend id="2" type="2" difference="0" hardness="Strong"/>
+                </task>
+            </task>
+            <task id="15" name="Création du programme" color="#ffcccc" meeting="false" start="2022-11-10" duration="40" complete="0" thirdDate="2022-11-10" thirdDate-constraint="0" expand="true">
+                <task id="2" name="Lire/extraire les données pertinantes." color="#33ff33" meeting="false" start="2022-11-10" duration="20" complete="0" thirdDate="2023-01-02" thirdDate-constraint="0" expand="true">
+                    <depend id="5" type="2" difference="0" hardness="Strong"/>
+                    <task id="4" name="Nombre totale de requêtes au serveur" color="#33ff33" meeting="false" start="2022-11-10" duration="20" complete="0" thirdDate="2023-01-02" thirdDate-constraint="0" expand="true">
+                        <notes>
+                            <![CDATA[calcul du nombre total de requêtes au serveur et rangées ces dernières dans des dictionnaires.]]>
+                        </notes>
+                    </task>
+                    <task id="6" name="Nombre de connection par type de navigateur." color="#33ff33" meeting="false" start="2022-11-10" duration="20" complete="0" thirdDate="2023-01-02" thirdDate-constraint="0" expand="true">
+                        <notes>
+                            <![CDATA[création d'un programme pour voir le nombre de connection par type de navigateur et rangement des données dans un dictionnaires.]]>
+                        </notes>
+                    </task>
+                    <task id="7" name="Histogramme de connection par mois/week" color="#33ff33" meeting="false" start="2022-11-10" duration="20" complete="0" thirdDate="2023-01-02" thirdDate-constraint="0" expand="true">
+                        <notes>
+                            <![CDATA[création d'un programme pour voir le nombre d'histogramme de connection et rangement des données dans un dictionnaire.]]>
+                        </notes>
+                    </task>
+                </task>
+                <task id="5" name="Générer une pâge HTML" color="#66ffff" meeting="false" start="2022-12-08" duration="7" complete="0" thirdDate="2023-01-02" thirdDate-constraint="0" expand="true">
+                    <notes>
+                        <![CDATA[recherche pour générer une page html/css avec python.]]>
+                    </notes>
+                    <depend id="8" type="2" difference="0" hardness="Strong"/>
+                    <depend id="9" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="8" name="Création de la page internet" color="#66ffff" meeting="false" start="2022-12-19" duration="3" complete="0" thirdDate="2022-11-02" thirdDate-constraint="0" expand="true">
+                    <notes>
+                        <![CDATA[création de la page internet et mise en forme de celle-ci.]]>
+                    </notes>
+                </task>
+                <task id="9" name="Création de graphique" color="#990099" meeting="false" start="2022-12-19" duration="5" complete="0" thirdDate="2022-11-02" thirdDate-constraint="0" expand="true">
+                    <notes>
+                        <![CDATA[création de graphique avec matplotlib et enrengistrer ces derniers sous format .png.]]>
+                    </notes>
+                    <task id="53" name="graphique histogramme" color="#990099" meeting="false" start="2022-12-19" duration="5" complete="0" thirdDate="2022-09-12" thirdDate-constraint="0" expand="true"/>
+                    <task id="54" name="graphie nombre totale de requêtes" color="#990099" meeting="false" start="2022-12-19" duration="5" complete="0" thirdDate="2022-09-12" thirdDate-constraint="0" expand="true"/>
+                    <task id="55" name="graphique de connections" color="#990099" meeting="false" start="2022-12-19" duration="5" complete="0" thirdDate="2022-09-12" thirdDate-constraint="0" expand="true"/>
+                </task>
+                <task id="10" name="Création de la documentation" color="#66ffff" meeting="false" start="2022-12-29" duration="5" complete="0" thirdDate="2022-12-12" thirdDate-constraint="0" expand="true"/>
+            </task>
+        </task>
+    </tasks>
+    <resources>
+        <resource id="0" name="Noah" function="SoftwareDevelopment:2" contacts="" phone=""/>
+        <resource id="1" name="Alex" function="SoftwareDevelopment:2" contacts="" phone=""/>
+    </resources>
+    <allocations>
+        <allocation task-id="0" resource-id="0" function="SoftwareDevelopment:2" responsible="true" load="50.0"/>
+        <allocation task-id="1" resource-id="0" function="SoftwareDevelopment:2" responsible="true" load="50.0"/>
+        <allocation task-id="2" resource-id="0" function="SoftwareDevelopment:2" responsible="true" load="60.0"/>
+        <allocation task-id="4" resource-id="0" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+        <allocation task-id="6" resource-id="0" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+        <allocation task-id="7" resource-id="0" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+        <allocation task-id="10" resource-id="0" function="SoftwareDevelopment:2" responsible="true" load="50.0"/>
+        <allocation task-id="13" resource-id="0" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+        <allocation task-id="0" resource-id="1" function="SoftwareDevelopment:2" responsible="true" load="50.0"/>
+        <allocation task-id="1" resource-id="1" function="SoftwareDevelopment:2" responsible="true" load="50.0"/>
+        <allocation task-id="2" resource-id="1" function="SoftwareDevelopment:2" responsible="true" load="40.0"/>
+        <allocation task-id="5" resource-id="1" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+        <allocation task-id="8" resource-id="1" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+        <allocation task-id="9" resource-id="1" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+        <allocation task-id="10" resource-id="1" function="SoftwareDevelopment:2" responsible="false" load="50.0"/>
+        <allocation task-id="13" resource-id="1" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+    </allocations>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+    <roles roleset-name="SoftwareDevelopment"/>
+</project>
