@@ -1,0 +1,29 @@
+import matplotlib.pyplot as plt
+import sys
+sys.path.append('/home/etudiant/Desktop/apache-vi/apache-vi')
+import av_parser as pa
+nav_dict = pa.browser_number()
+
+#print in a graph the month connextion
+# fig, axes = plt.subplots()
+x=[]
+y=[]
+for key in nav_dict.keys():
+    x.append(key)
+print(x)
+    
+for value in nav_dict.values():
+    y.append(value)
+print(y)
+
+# for test
+def main():
+    print(type(x))
+    print(type(x[0]))
+    plt.title("connection_filter")
+    plt.pie(y,labels=x, autopct='%1.1f%%',shadow=True,startangle=90)
+    plt.axis('equal')
+    plt.savefig('connection-filter.png')
+    plt.show()
+if __name__ == "__main__":
+    main()
