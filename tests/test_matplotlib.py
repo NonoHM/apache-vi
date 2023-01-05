@@ -3,10 +3,10 @@ import sys
 sys.path.append('/home/etudiant/Desktop/apache-vi/apache-vi')
 import av_parser as pa
 date_dict = pa.connection_number()
-
 dict_month = pa.connection_month(date_dict, True)
 dict_week = pa.connection_week(date_dict)
 #print in a graph the month connextion
+
 fig, axes = plt.subplots()
 x=[]
 y=[]
@@ -21,7 +21,7 @@ print(y)
 # for test
 def main():
     width = 1.0
-    plt.title("test")
+    plt.title("month_connexion")
     axes.bar(x, y, width, align = 'center', color='b' )
     plt.savefig('test7.png')
     plt.show()
