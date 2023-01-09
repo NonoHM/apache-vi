@@ -28,24 +28,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-#test :  print(pa.connection_month(date_dict, True))
-"""
-x=[]
-y=[]
-for key in dict_week.keys():
-    x.append(key)
-print(x)
-    
-for value in dict_week.values():
-    y.append(value)
-print(y)
-
-# for test
-def main():
-
-    plt.bar(x,y)
-    plt.show()
-
-if __name__ == "__main__":
-    main()
-"""
