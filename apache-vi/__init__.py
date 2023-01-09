@@ -1,5 +1,5 @@
 """
-.. module:: parser.py
+.. module:: av_parser.py
    :platform: Unix, windows
    :synopsis: Analyseur des différentes parties du log Apache
 
