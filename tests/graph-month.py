@@ -1,23 +1,24 @@
 import matplotlib.pyplot as plt
 import sys
-sys.path.append('../apache-vi')
+sys.path.append('/home/etudiant/Desktop/apache-vi/apache-vi')
 import av_parser as pa
 date_dict = pa.connection_number()
-dict_month = pa.connection_month(date_dict, True)
 
+dict_month = pa.connection_month(date_dict, True)
+dict_week = pa.connection_week(date_dict)
 #print in a graph the month connextion
 fig, axes = plt.subplots()
 x=[]
 y=[]
-for key in browser_dict.keys():
+for key in dict_month.keys():
     x.append(key)
 print(x)
     
-for value in browser_dict.values():
+for value in dict_month.values():
     y.append(value)
 print(y)
 
-# # for test
+# for test
 def main():
     width = 1.0
     plt.title("test")
@@ -26,3 +27,4 @@ def main():
     plt.show()
 if __name__ == "__main__":
     main()
+
