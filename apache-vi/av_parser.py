@@ -15,9 +15,11 @@ parser = LogParser("%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"
 # Compter le nombre de lignes du log
 def log_length(log_path=default_log_path):
     '''
-    log_length(log_path=default_log_path) returns the number of lines existing in the text
+    Returns the number of lines existing in the text
     
-    log_path: path of the log file
+    :param str log_path: Path of the log file
+    :returns: Number of existing lines
+    :rtype: str
     '''
     with open(log_path) as fp:
         lines = len(fp.readlines())
@@ -34,7 +36,9 @@ def browser_number(log_path=default_log_path):
     '''
     browser_number(log_path=default_default_log_path) searches in the log file for the presence of browsers and count how much there's in it
     
-    log_path: path of the log file
+    :param str log_path: Path of the log file
+    :returns: Searches which and how many browsers were connected with the log files 
+    :rtype: dict
     '''
     browser_list = []
     browser_dict = {}
@@ -55,7 +59,9 @@ def connection_number(log_path=default_log_path):
     '''
     connection_number(log_path=default_log_path) searches how many times and when a connection has been done
 
-    log_path: path of the log file
+    :param str log_path: Path of the log file
+    :returns: Searches when and how many times a connection has been done in the log file
+    :rtype: dict
     '''
     k = 1
     date_list = []
@@ -75,7 +81,9 @@ def connection_week(date_dict):
     connection_week(date_dict) uses the dict sent by the connection_number() function and returns the connections per week
     the week returned is the week ISO number provided by isocalendar()
 
-    date_dict: {day: nb_connections} -> {week: nb_connections}
+    :param dict date_dict: {day: nb_connections}
+    :returns: Returns connections per week 
+    :rtype: dict
     '''
     L1 = []
     L2 = []
@@ -96,15 +104,17 @@ def connection_week(date_dict):
 
 # Filtre les dates par mois, 
 # 2 Arguments, 1er: dictionnaire des jours, 2e: True or False.
-# False retourne le numéro du mois format ISO - nb total de connexions sur ce mois
-# True retourne le nom du mois  - nb connexions du mois 
-def connection_month(date_dict, switch=False):
+# True retourne le numéro du mois format ISO - nb total de connexions sur ce mois
+# False retourne le nom du mois  - nb connexions du mois 
+def connection_month(date_dict, switch=True):
     '''
-    connection_week(date_dict, switch=False) uses the dict sent by the connection_number() function and returns the connections per month
-    if the switch is true it returns the name of the month instead of the ISO number of it
+    connection_week(date_dict, switch=True) uses the dict sent by the connection_number() function and returns the connections per month.
+    If the switch is False, it returns the ISO number of it instead of the name of the month
 
-    date_dict: {day: nb_connections} -> {month: nb_connections}
-    switch: Bool (True/False)
+    :param dict date_dict: {day: nb_connections}
+    :param bool switch: Returns month by name or by ISO Format
+    :returns: Returns connections per month
+    :rtype: dict
     '''
     assert switch == True or switch == False
     L1 = []
@@ -132,7 +142,7 @@ def main():
     print(f" Le nombre de connexions par type de navigateur est: \n {browser_number()}")
     print(f" Le nombre de connexions par jour est: \n {connection_number()}")
     print(f" Le nombre de connexions par semaine est: \n {connection_week(connection_number())}")
-    print(f" Le nombre de connexions par mois est: \n {connection_month(connection_number(), True)}")
+    print(f" Le nombre de connexions par mois est: \n {connection_month(connection_number())}")
 
 if __name__ == "__main__":
     main()
