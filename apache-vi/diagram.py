@@ -54,7 +54,7 @@ def month_graph(dict_month, output):
     '''
     month_graph(dict_month, output) uses the dict sent by the connection_number() function and returns the connections per month in a graph
 
-    :param dmonth_graph: dict_month = pa.connection_month(date_dict, True)
+    :param dict dict_month: pa.connection_month(date_dict, True)
     :returns: returns a histogram of all the connections of the month.
     :rtype: img
     '''
@@ -77,7 +77,7 @@ def week_graph(dict_week, output):
     '''
     week_graph(dict_week, output): uses the dict sent by the connection_number() function and returns the connections per week in a graph.
 
-    :param week_graph: ddict_week = pa.connection_week(date_dict)
+    :param dict dict_week: pa.connection_week(date_dict)
     :returns: returns a histogram of all the connections of the week.
     :rtype: img
     '''
