@@ -1,0 +1,348 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>av_parser &mdash; apache-vi 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> apache-vi
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Apache-vi</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../apache-vi.html">Apache-vi Modules</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">apache-vi</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>av_parser</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for av_parser</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">apachelogs</span> <span class="kn">import</span> <span class="n">LogParser</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: av_parser.py</span>
+<span class="sd">   :platform: Unix, windows</span>
+<span class="sd">   :synopsis: Parser of the input file to return elements to create diagrams</span>
+
+<span class="sd">.. moduleauthor:: Houmeau Noah &lt;noah.houmeau@etu.univ-poitiers.fr&gt;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1">#default_log_path = &#39;/home/etudiant/Desktop/apache-vi/data/pydefis-ssl.access_ano.log&#39;</span>
+<span class="n">default_log_path</span> <span class="o">=</span> <span class="s1">&#39;../data/access.laii-8.log&#39;</span>
+<span class="c1"># Découper chaque partie du log selon la norme (voir docs)</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">LogParser</span><span class="p">(</span><span class="s2">&quot;%h %l </span><span class="si">%u</span><span class="s2"> %t </span><span class="se">\&quot;</span><span class="si">%r</span><span class="se">\&quot;</span><span class="s2"> %&gt;s %b </span><span class="se">\&quot;</span><span class="s2">%</span><span class="si">{Referer}</span><span class="s2">i</span><span class="se">\&quot;</span><span class="s2"> </span><span class="se">\&quot;</span><span class="s2">%{User-Agent}i</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Compter le nombre de lignes du log</span>
+<div class="viewcode-block" id="log_length"><a class="viewcode-back" href="../apache-vi.html#av_parser.log_length">[docs]</a><span class="k">def</span> <span class="nf">log_length</span><span class="p">(</span><span class="n">log_path</span><span class="o">=</span><span class="n">default_log_path</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Returns the number of lines existing in the text</span>
+<span class="sd">    </span>
+<span class="sd">    :param str log_path: Path of the log file</span>
+<span class="sd">    :returns: Number of existing lines</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">log_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">lines</span></div>
+
+<span class="c1"># Filtrer/Compter le nombre de la liste par type (navigateur, date...)</span>
+<div class="viewcode-block" id="count_filter"><a class="viewcode-back" href="../apache-vi.html#av_parser.count_filter">[docs]</a><span class="k">def</span> <span class="nf">count_filter</span><span class="p">(</span><span class="n">filter_obj</span><span class="o">=</span><span class="s1">&#39;Firefox&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">list_to_iterate</span><span class="p">):</span>
+    <span class="n">filtered</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">==</span> <span class="n">filter_obj</span><span class="p">,</span> <span class="o">*</span><span class="n">list_to_iterate</span><span class="p">)))</span>
+    <span class="c1">#print(f&quot;Il y a {filtered} {browser_type} utilisés&quot;)</span>
+    <span class="k">return</span> <span class="n">filtered</span></div>
+
+<span class="c1"># Trouver le nombre de navigateurs et les ranger dans un dictionnaire</span>
+<div class="viewcode-block" id="browser_number"><a class="viewcode-back" href="../apache-vi.html#av_parser.browser_number">[docs]</a><span class="k">def</span> <span class="nf">browser_number</span><span class="p">(</span><span class="n">log_path</span><span class="o">=</span><span class="n">default_log_path</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    browser_number(log_path=default_default_log_path) searches in the log file for the presence of browsers and count how much there&#39;s in it</span>
+<span class="sd">    </span>
+<span class="sd">    :param str log_path: Path of the log file</span>
+<span class="sd">    :returns: Searches which and how many browsers were connected with the log files </span>
+<span class="sd">    :rtype: dict</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">browser_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">browser_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">search_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Firefox&#39;</span><span class="p">,</span> <span class="s1">&#39;Chrome&#39;</span><span class="p">,</span> <span class="s1">&#39;Safari&#39;</span><span class="p">,</span> <span class="s1">&#39;Brave&#39;</span><span class="p">,</span> <span class="s1">&#39;Opera&#39;</span><span class="p">,</span> <span class="s1">&#39;Edge&#39;</span><span class="p">,</span> <span class="s1">&#39;Internet Explorer&#39;</span><span class="p">]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">log_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>  
+        <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_lines</span><span class="p">(</span><span class="n">fp</span><span class="p">):</span>
+            <span class="n">browser</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">headers_in</span><span class="p">[</span><span class="s2">&quot;User-Agent&quot;</span><span class="p">])</span>
+            <span class="n">browser_search</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">search_list</span><span class="p">),</span><span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">browser</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">browser_search</span><span class="p">:</span>
+                <span class="n">browser_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">browser_search</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">browser_list</span><span class="p">)):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">count_filter</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">browser_list</span><span class="p">)</span>
+        <span class="n">browser_dict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">i</span><span class="p">:</span> <span class="n">a</span><span class="p">})</span>
+    <span class="k">return</span> <span class="n">browser_dict</span></div>
+
+<span class="c1"># Filtrer le nombre de connexions par jour</span>
+<div class="viewcode-block" id="connection_number"><a class="viewcode-back" href="../apache-vi.html#av_parser.connection_number">[docs]</a><span class="k">def</span> <span class="nf">connection_number</span><span class="p">(</span><span class="n">log_path</span><span class="o">=</span><span class="n">default_log_path</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    connection_number(log_path=default_log_path) searches how many times and when a connection has been done</span>
+
+<span class="sd">    :param str log_path: Path of the log file</span>
+<span class="sd">    :returns: Searches when and how many times a connection has been done in the log file</span>
+<span class="sd">    :rtype: dict</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">date_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">date_filtered</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">log_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>  
+        <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_lines</span><span class="p">(</span><span class="n">fp</span><span class="p">):</span>
+            <span class="n">date_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">request_time</span><span class="o">.</span><span class="n">date</span><span class="p">()))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">date_list</span><span class="p">)):</span>
+        <span class="n">filtered</span> <span class="o">=</span> <span class="n">count_filter</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">date_list</span><span class="p">)</span>
+        <span class="n">date_filtered</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">i</span><span class="p">:</span> <span class="n">filtered</span> <span class="p">})</span>
+    <span class="k">return</span> <span class="n">date_filtered</span></div>
+
+<span class="c1"># Filtre les dates par semaine, </span>
+<span class="c1"># Retourne le numéro de la semaine format ISO - nb total de connexions sur cette semaine</span>
+<div class="viewcode-block" id="connection_week"><a class="viewcode-back" href="../apache-vi.html#av_parser.connection_week">[docs]</a><span class="k">def</span> <span class="nf">connection_week</span><span class="p">(</span><span class="n">date_dict</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    connection_week(date_dict) uses the dict sent by the connection_number() function and returns the connections per week</span>
+<span class="sd">    the week returned is the week ISO number provided by isocalendar()</span>
+
+<span class="sd">    :param dict date_dict: {day: nb_connections}</span>
+<span class="sd">    :returns: Returns connections per week </span>
+<span class="sd">    :rtype: dict</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">L1</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">L2</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">L3</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">date_dict</span><span class="p">:</span>
+        <span class="n">date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">weekd</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">isocalendar</span><span class="p">()</span><span class="o">.</span><span class="n">week</span>
+        <span class="n">L1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">weekd</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">pairs</span> <span class="ow">in</span> <span class="n">date_dict</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="n">L2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">L1</span><span class="p">)):</span>
+        <span class="n">L3</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="n">L1</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span> <span class="n">L2</span><span class="p">[</span><span class="n">j</span><span class="p">]})</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">L3</span><span class="p">:</span> 
+        <span class="n">counter</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>  
+    <span class="n">result</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+<span class="c1"># Filtre les dates par mois, </span>
+<span class="c1"># 2 Arguments, 1er: dictionnaire des jours, 2e: True or False.</span>
+<span class="c1"># True retourne le numéro du mois format ISO - nb total de connexions sur ce mois</span>
+<span class="c1"># False retourne le nom du mois  - nb connexions du mois </span>
+<div class="viewcode-block" id="connection_month"><a class="viewcode-back" href="../apache-vi.html#av_parser.connection_month">[docs]</a><span class="k">def</span> <span class="nf">connection_month</span><span class="p">(</span><span class="n">date_dict</span><span class="p">,</span> <span class="n">switch</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    connection_week(date_dict, switch=True) uses the dict sent by the connection_number() function and returns the connections per month.</span>
+<span class="sd">    If the switch is False, it returns the ISO number of it instead of the name of the month</span>
+
+<span class="sd">    :param dict date_dict: {day: nb_connections}</span>
+<span class="sd">    :param bool switch: Returns month by name or by ISO Format</span>
+<span class="sd">    :returns: Returns connections per month</span>
+<span class="sd">    :rtype: dict</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">assert</span> <span class="n">switch</span> <span class="o">==</span> <span class="kc">True</span> <span class="ow">or</span> <span class="n">switch</span> <span class="o">==</span> <span class="kc">False</span>
+    <span class="n">L1</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">L2</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">L3</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">date_dict</span><span class="p">:</span>
+        <span class="n">date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">switch</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">L1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">ctime</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">monthd</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">month</span>
+            <span class="n">L1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">monthd</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">pairs</span> <span class="ow">in</span> <span class="n">date_dict</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="n">L2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">L1</span><span class="p">)):</span>
+        <span class="n">L3</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="n">L1</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span> <span class="n">L2</span><span class="p">[</span><span class="n">j</span><span class="p">]})</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">L3</span><span class="p">:</span> 
+        <span class="n">counter</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>  
+    <span class="n">result</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+        
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../apache-vi.html#av_parser.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; Le nombre de connexions par type de navigateur est: </span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">browser_number</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; Le nombre de connexions par jour est: </span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">connection_number</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; Le nombre de connexions par semaine est: </span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">connection_week</span><span class="p">(</span><span class="n">connection_number</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; Le nombre de connexions par mois est: </span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">connection_month</span><span class="p">(</span><span class="n">connection_number</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Noah Houmeau, Alex Barbot.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

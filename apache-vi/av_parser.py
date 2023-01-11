@@ -4,7 +4,11 @@ from datetime import datetime
 from collections import Counter
 
 """
-Parser of the input file to return elements to create diagrams w/ matplotlib
+.. module:: av_parser.py
+   :platform: Unix, windows
+   :synopsis: Parser of the input file to return elements to create diagrams
+
+.. moduleauthor:: Houmeau Noah <noah.houmeau@etu.univ-poitiers.fr>
 """
 
 #default_log_path = '/home/etudiant/Desktop/apache-vi/data/pydefis-ssl.access_ano.log'

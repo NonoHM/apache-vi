@@ -2,7 +2,7 @@ import av_parser as pa
 import diagram as dg
 import html_creator as html
 import argparse
-import sys
+import webbrowser
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--input-file', help='Input log file')
@@ -20,6 +20,7 @@ def render():
     dict_week = pa.connection_week(date_dict)
     dg.make_all(dict_week, dict_month, nav_dict, output_dir)
     html.html_creator(log_length, output_dir)
+    webbrowser.open(f'{output_dir}/index.html')
     print(f"Finished ! The website has been made in {output_dir}")
 
 def main():
