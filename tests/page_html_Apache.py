@@ -1,6 +1,6 @@
 # to open/create a new html file in the write mode
-f = open('./tests/test.html', 'w')
-c = open('./tests/test.css', 'w')
+f = open('./tests/test56446.html', 'w')
+c = open('./tests/test4144.css', 'w')
 
 # the html code which will go in the file GFG.html
 html_template = """<html>
