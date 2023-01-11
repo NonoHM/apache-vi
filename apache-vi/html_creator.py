@@ -8,6 +8,13 @@ log_length = 69
 
 
 def html_creator(log_length, output_dir):
+    '''
+    html_creator(log_length, output_dir) uses the {output_dir_img} sent by the diagram.py function and returns return the web page.
+
+    :param html_creator: log_length, output_dir)
+    :returns: returns a web page with a index.html and a style.css
+    '''
+    
     # to open/create a new html file in the write mode
     html = open(output_dir + '/index.html', 'w')
     css = open(output_dir + '/style.css', 'w')

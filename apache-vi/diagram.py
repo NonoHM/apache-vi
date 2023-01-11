@@ -13,6 +13,13 @@ output = '../output'
 
 #To save all the graph
 def create_graph(output, graph):
+      '''
+    create the graph in the output folder
+    
+    :param str graph: Path of the graph file
+    :returns: graph 
+    :rtype: str
+    '''
     output = output + '/img'
     if not os.path.exists(output):
         os.makedirs(output)
@@ -21,6 +28,13 @@ def create_graph(output, graph):
 
 #print in a graph the breakdown of connections by browser :
 def nav_graph(nav_dict, output):
+    '''
+    browser_number(log_path=default_default_log_path) create a pie chart to display the number of browsers used
+    
+    :param str log_path: Path of the graph file
+    :returns: it displays a pie chart with all the browsers and their number of connections 
+    :rtype: dict
+    '''
     fig, axes = plt.subplots()
     x=[]
     y=[]
@@ -37,6 +51,13 @@ def nav_graph(nav_dict, output):
 
 #print in a graph the month connextion : 
 def month_graph(dict_month, output):
+    '''
+    connection_week(date_dict, switch=True) uses the dict sent by the connection_number() function and returns the connections per month in a graph.
+
+    :param dict date_dict: date_dict = pa.connection_number() , dict_month = pa.connection_month(date_dict, True)
+    :returns: returns a histogram of all the connections of the month.
+    :rtype: dict
+    '''
     fig, axes = plt.subplots()
     x=[]
     y=[]
@@ -53,6 +74,13 @@ def month_graph(dict_month, output):
 
 #print in a graph the week connextion
 def week_graph(dict_week, output):
+    '''
+    connection_week(date_dict) uses the dict sent by the connection_number() function and returns the connections per week in a graph
+
+    :param dict date_dict: date_dict = pa.connection_number() , dict_week = pa.connection_week(date_dict, True)
+    :returns: returns a histogram of all the connections of the week.
+    :rtype: dict
+    '''
     fig, axes = plt.subplots()
     x=[]
     y=[]
