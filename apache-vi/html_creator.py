@@ -21,23 +21,10 @@ def html_creator(log_length, output_dir):
     </head>
     <body>
         <header>
-            <h1>Bienvenue sur notre page Apache</h1>
+            <h1>Apache-vi log analysis results</h1>
         </header>
-        <nav>
-            <ul>
-                <li><a href="#">Accueil</a></li>
-                <li><a href="#">Galerie</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-        <main>
-            <section id="accueil">
-                <h2>Bienvenue sur notre site</h2>
-            </section>
-
-            <h2>Découvrez nos dernières images</h2>
-            
-            <p class="m-2 text-xl">There is {log_length} lines in the log file</p>
+        <div>
+            <p class="lines">There is <span>{log_length}</span> lines in the log file</p>
 
             <div class="image-grid">
                 <img class="my-2 rounded-xl w-1/3" src="{output_dir_img}/browser_graph.png" alt="Breakdown of connections by browser"/>
@@ -46,16 +33,17 @@ def html_creator(log_length, output_dir):
             </div>
 
             <section id="contact">
-                <p>Pour plus de question vous pouvez nous contacter par mail au addreeses suivantes :</p>
-                <p>alex.barbot@etu.univ-poitiers.fr ou noah.houmeau@etu.univ-poitiers.fr</p>
+               
             </section>
 
         </main>
         <footer>
             <div class="contact-info">
-                <a href="https://github.com/NonoHM/apache-vi", target="_blank">
-                    <img src="image/logo-git.png" alt="Logo de GitHub">
-                </a>
+             <p>Contact Us:</p>
+            <p>alex.barbot@etu.univ-poitiers.fr ou noah.houmeau@etu.univ-poitiers.fr</p>
+            <a href="https://github.com/NonoHM/apache-vi", target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="Logo de GitHub">
+            </a>
 
             </div>
         </footer>
@@ -128,6 +116,17 @@ def html_creator(log_length, output_dir):
         text-align: center;
     }
 
+    .lines {
+        margin: 10rem 1rem 10rem 1rem
+        font-size: 32px;
+        text-align: center;
+    }
+    
+    .lines span{
+        font-weight: bold;
+        font-size: 39px;
+    }
+
     .image-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -143,7 +142,7 @@ def html_creator(log_length, output_dir):
     }
 
     .image-grid img:hover {
-        transform: scale(1.1);
+        transform: scale(1.05);
     }
 
     footer {
