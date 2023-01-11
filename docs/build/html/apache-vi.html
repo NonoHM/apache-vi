@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>apache-vi package &mdash; apache-vi 1.0 documentation</title>
+  <title>Apache-vi Modules &mdash; apache-vi 1.0 documentation</title>
   
 
   
@@ -35,8 +35,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="apache-vi.apache-vi package" href="apache-vi.apache-vi.html" />
-    <link rel="prev" title="apache-vi" href="modules.html" /> 
+    <link rel="prev" title="Welcome to Apache-vi" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -81,17 +80,13 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Apache-vi</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">apache-vi</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">apache-vi package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="apache-vi.apache-vi.html">apache-vi.apache-vi package</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-contents">Module contents</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Apache-vi Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-av_parser">av_parser Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-diagram">diagram Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-html_creator">html_creator Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#apache-vi-main-module">apache-vi main Module</a></li>
 </ul>
 </li>
 </ul>
@@ -142,9 +137,7 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="modules.html">apache-vi</a> &raquo;</li>
-        
-      <li>apache-vi package</li>
+      <li>Apache-vi Modules</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -163,24 +156,157 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="apache-vi-package">
-<h1>apache-vi package<a class="headerlink" href="#apache-vi-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="apache-vi-modules">
+<h1>Apache-vi Modules<a class="headerlink" href="#apache-vi-modules" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="apache-vi.apache-vi.html">apache-vi.apache-vi package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="apache-vi.apache-vi.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="apache-vi.apache-vi.html#apache-vi-apache-vi-av-parser-module">apache-vi.apache-vi.av_parser module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="apache-vi.apache-vi.html#apache-vi-apache-vi-main-module">apache-vi.apache-vi.main module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="apache-vi.apache-vi.html#module-contents">Module contents</a></li>
-</ul>
-</li>
-</ul>
 </div>
+<div class="section" id="module-av_parser">
+<span id="av-parser-module"></span><h2>av_parser Module<a class="headerlink" href="#module-av_parser" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="av_parser.browser_number">
+<code class="sig-prename descclassname">av_parser.</code><code class="sig-name descname">browser_number</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">log_path</span><span class="o">=</span><span class="default_value">'../data/access.laii-8.log'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/av_parser.html#browser_number"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#av_parser.browser_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>browser_number(log_path=default_default_log_path) searches in the log file for the presence of browsers and count how much there’s in it</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>log_path</strong> (<em>str</em>) – Path of the log file</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Searches which and how many browsers were connected with the log files</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="av_parser.connection_month">
+<code class="sig-prename descclassname">av_parser.</code><code class="sig-name descname">connection_month</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">date_dict</span></em>, <em class="sig-param"><span class="n">switch</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/av_parser.html#connection_month"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#av_parser.connection_month" title="Permalink to this definition">¶</a></dt>
+<dd><p>connection_week(date_dict, switch=True) uses the dict sent by the connection_number() function and returns the connections per month.
+If the switch is False, it returns the ISO number of it instead of the name of the month</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>date_dict</strong> (<em>dict</em>) – {day: nb_connections}</p></li>
+<li><p><strong>switch</strong> (<em>bool</em>) – Returns month by name or by ISO Format</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns connections per month</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="av_parser.connection_number">
+<code class="sig-prename descclassname">av_parser.</code><code class="sig-name descname">connection_number</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">log_path</span><span class="o">=</span><span class="default_value">'../data/access.laii-8.log'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/av_parser.html#connection_number"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#av_parser.connection_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>connection_number(log_path=default_log_path) searches how many times and when a connection has been done</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>log_path</strong> (<em>str</em>) – Path of the log file</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Searches when and how many times a connection has been done in the log file</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="av_parser.connection_week">
+<code class="sig-prename descclassname">av_parser.</code><code class="sig-name descname">connection_week</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">date_dict</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/av_parser.html#connection_week"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#av_parser.connection_week" title="Permalink to this definition">¶</a></dt>
+<dd><p>connection_week(date_dict) uses the dict sent by the connection_number() function and returns the connections per week
+the week returned is the week ISO number provided by isocalendar()</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>date_dict</strong> (<em>dict</em>) – {day: nb_connections}</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns connections per week</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="av_parser.count_filter">
+<code class="sig-prename descclassname">av_parser.</code><code class="sig-name descname">count_filter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filter_obj</span><span class="o">=</span><span class="default_value">'Firefox'</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">list_to_iterate</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/av_parser.html#count_filter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#av_parser.count_filter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="av_parser.log_length">
+<code class="sig-prename descclassname">av_parser.</code><code class="sig-name descname">log_length</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">log_path</span><span class="o">=</span><span class="default_value">'../data/access.laii-8.log'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/av_parser.html#log_length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#av_parser.log_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of lines existing in the text</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>log_path</strong> (<em>str</em>) – Path of the log file</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Number of existing lines</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="av_parser.main">
+<code class="sig-prename descclassname">av_parser.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/av_parser.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#av_parser.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
-<div class="section" id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-diagram">
+<span id="diagram-module"></span><h2>diagram Module<a class="headerlink" href="#module-diagram" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="diagram.create_graph">
+<code class="sig-prename descclassname">diagram.</code><code class="sig-name descname">create_graph</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">output</span></em>, <em class="sig-param"><span class="n">graph</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/diagram.html#create_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#diagram.create_graph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="diagram.main">
+<code class="sig-prename descclassname">diagram.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/diagram.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#diagram.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="diagram.make_all">
+<code class="sig-prename descclassname">diagram.</code><code class="sig-name descname">make_all</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dict_week</span></em>, <em class="sig-param"><span class="n">dict_month</span></em>, <em class="sig-param"><span class="n">nav_dict</span></em>, <em class="sig-param"><span class="n">output</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/diagram.html#make_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#diagram.make_all" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="diagram.month_graph">
+<code class="sig-prename descclassname">diagram.</code><code class="sig-name descname">month_graph</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dict_month</span></em>, <em class="sig-param"><span class="n">output</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/diagram.html#month_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#diagram.month_graph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="diagram.nav_graph">
+<code class="sig-prename descclassname">diagram.</code><code class="sig-name descname">nav_graph</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nav_dict</span></em>, <em class="sig-param"><span class="n">output</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/diagram.html#nav_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#diagram.nav_graph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="diagram.week_graph">
+<code class="sig-prename descclassname">diagram.</code><code class="sig-name descname">week_graph</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dict_week</span></em>, <em class="sig-param"><span class="n">output</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/diagram.html#week_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#diagram.week_graph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-html_creator">
+<span id="html-creator-module"></span><h2>html_creator Module<a class="headerlink" href="#module-html_creator" title="Permalink to this headline">¶</a></h2>
+<p>Website module creator</p>
+<dl class="py function">
+<dt id="html_creator.html_creator">
+<code class="sig-prename descclassname">html_creator.</code><code class="sig-name descname">html_creator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">log_length</span></em>, <em class="sig-param"><span class="n">output_dir</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/html_creator.html#html_creator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#html_creator.html_creator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="apache-vi-main-module">
+<h2>apache-vi main Module<a class="headerlink" href="#apache-vi-main-module" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -190,8 +316,7 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="apache-vi.apache-vi.html" class="btn btn-neutral float-right" title="apache-vi.apache-vi package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="modules.html" class="btn btn-neutral float-left" title="apache-vi" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Apache-vi" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

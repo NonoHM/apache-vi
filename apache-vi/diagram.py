@@ -21,7 +21,6 @@ def create_graph(output, graph):
 
 #print in a graph the breakdown of connections by browser :
 def nav_graph(nav_dict, output):
-    fig, axes = plt.subplots()
     x=[]
     y=[]
     for key in nav_dict.keys():
