@@ -2,7 +2,7 @@
 
 ## About
 Apache-vi is our first programming project of our first year at the IUT of Chatellerault as Telecom & Network students
-It is an Apache log analyser to create statistics about the activities made on the server.
+It is an Apache log analyser to create statistics about the connections done with the server
 
 ## Getting Started
 This is an example of how you may setting up your project locally. 
