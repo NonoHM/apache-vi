@@ -24,7 +24,7 @@ How to use
 
 .. code-block:: bash
 
-   $ ./main.py --input-file log_file --output-dir output_dir
+   $ python3 ./main.py --input-file log_file --output-dir output_dir
 
 Indices and tables
 -------------------

@@ -143,6 +143,9 @@ def connection_month(date_dict, switch=True):
         
 
 def main():
+    '''
+    Main test function
+    '''
     print(f" Le nombre de connexions par type de navigateur est: \n {browser_number()}")
     print(f" Le nombre de connexions par jour est: \n {connection_number()}")
     print(f" Le nombre de connexions par semaine est: \n {connection_week(connection_number())}")

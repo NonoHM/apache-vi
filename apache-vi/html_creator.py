@@ -47,7 +47,7 @@ def html_creator(log_length, output_dir):
         <footer>
             <div class="contact-info">
              <p>Contact Us:</p>
-            <p>alex.barbot@etu.univ-poitiers.fr ou noah.houmeau@etu.univ-poitiers.fr</p>
+            <p>alex.barbot@etu.univ-poitiers.fr or noah.houmeau@etu.univ-poitiers.fr</p>
             <a href="https://github.com/NonoHM/apache-vi", target="_blank">
                     <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="Logo de GitHub">
             </a>

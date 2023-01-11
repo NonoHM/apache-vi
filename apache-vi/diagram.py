@@ -14,9 +14,10 @@ output = '../output'
 #To save all the graph
 def create_graph(output, graph):
     '''
-    create the graph in the output folder
+    create_graph(output, graph) create the graph in the output folder
     
-    :param str graph: Path of the graph file
+    :param str output: output path
+    :param str graph: graph file name
     :returns: graph 
     :rtype: img
     '''
@@ -31,8 +32,9 @@ def nav_graph(nav_dict, output):
     '''
     nav_graph(nav_dict, output) create a pie chart to display the number of browsers used
     
-    :param str log_path: Path of the graph file
-    :returns: Displays a pie chart with all the browsers and their number of connections 
+    :param dict nav_dict: path of the graph file
+    :param str output: output path
+    :returns: save a pie chart with all the browsers and their number of connections 
     :rtype: img
     '''
     fig, axes = plt.subplots()
@@ -55,7 +57,8 @@ def month_graph(dict_month, output):
     month_graph(dict_month, output) uses the dict sent by the connection_number() function and returns the connections per month in a graph
 
     :param dict dict_month: pa.connection_month(date_dict, True)
-    :returns: returns a histogram of all the connections of the month.
+    :param str output: output path
+    :returns: save a histogram of all the connections of the month.
     :rtype: img
     '''
     fig, axes = plt.subplots()
@@ -78,7 +81,8 @@ def week_graph(dict_week, output):
     week_graph(dict_week, output): uses the dict sent by the connection_number() function and returns the connections per week in a graph.
 
     :param dict dict_week: pa.connection_week(date_dict)
-    :returns: returns a histogram of all the connections of the week.
+    :param str output: output path
+    :returns: saves a histogram of all the connections of the week.
     :rtype: img
     '''
     fig, axes = plt.subplots()
@@ -97,11 +101,24 @@ def week_graph(dict_week, output):
 
 #Create every graph at same time
 def make_all(dict_week, dict_month, nav_dict, output):
+    '''
+    make_all(dict_week, output): calls every graph function to make all graphs in one time.
+
+    :param dict dict_week: pa.connection_week(date_dict)
+    :param dict dict_month: pa.connection_month(date_dict, True)
+    :param dict nav_dict: path of the graph file
+    :param str output: output path
+    :returns: returns every graphs.
+    :rtype: img
+    '''
     nav_graph(nav_dict, output)
     week_graph(dict_week, output)
     month_graph(dict_month, output)
 
 def main():
+    '''
+    Main test function
+    '''
     make_all(dict_week, dict_month, nav_dict, output)
     
     

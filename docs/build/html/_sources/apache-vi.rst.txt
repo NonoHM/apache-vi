@@ -12,7 +12,7 @@ av_parser Module
    :members:
    :undoc-members:
    :show-inheritance:
-
+   
 diagram Module
 -------------------------
 
@@ -29,10 +29,4 @@ html_creator Module
    :undoc-members:
    :show-inheritance:
 
-apache-vi main Module
-----------------------
 
-.. automodule:: main
-   :members:
-   :undoc-members:
-   :show-inheritance:

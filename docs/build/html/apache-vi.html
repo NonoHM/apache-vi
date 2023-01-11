@@ -86,7 +86,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#module-av_parser">av_parser Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-diagram">diagram Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-html_creator">html_creator Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#apache-vi-main-module">apache-vi main Module</a></li>
 </ul>
 </li>
 </ul>
@@ -268,32 +267,110 @@ the week returned is the week ISO number provided by isocalendar()</p>
 <dl class="py function">
 <dt id="diagram.create_graph">
 <code class="sig-prename descclassname">diagram.</code><code class="sig-name descname">create_graph</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">output</span></em>, <em class="sig-param"><span class="n">graph</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/diagram.html#create_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#diagram.create_graph" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>create_graph(output, graph) create the graph in the output folder</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>output</strong> (<em>str</em>) – output path</p></li>
+<li><p><strong>graph</strong> (<em>str</em>) – graph file name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>graph</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>img</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="diagram.main">
 <code class="sig-prename descclassname">diagram.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/diagram.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#diagram.main" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Main test function</p>
+</dd></dl>
 
 <dl class="py function">
 <dt id="diagram.make_all">
 <code class="sig-prename descclassname">diagram.</code><code class="sig-name descname">make_all</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dict_week</span></em>, <em class="sig-param"><span class="n">dict_month</span></em>, <em class="sig-param"><span class="n">nav_dict</span></em>, <em class="sig-param"><span class="n">output</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/diagram.html#make_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#diagram.make_all" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>make_all(dict_week, output): calls every graph function to make all graphs in one time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dict_week</strong> (<em>dict</em>) – pa.connection_week(date_dict)</p></li>
+<li><p><strong>dict_month</strong> (<em>dict</em>) – pa.connection_month(date_dict, True)</p></li>
+<li><p><strong>nav_dict</strong> (<em>dict</em>) – path of the graph file</p></li>
+<li><p><strong>output</strong> (<em>str</em>) – output path</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>returns every graphs.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>img</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="diagram.month_graph">
 <code class="sig-prename descclassname">diagram.</code><code class="sig-name descname">month_graph</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dict_month</span></em>, <em class="sig-param"><span class="n">output</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/diagram.html#month_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#diagram.month_graph" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>month_graph(dict_month, output) uses the dict sent by the connection_number() function and returns the connections per month in a graph</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dict_month</strong> (<em>dict</em>) – pa.connection_month(date_dict, True)</p></li>
+<li><p><strong>output</strong> (<em>str</em>) – output path</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>save a histogram of all the connections of the month.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>img</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="diagram.nav_graph">
 <code class="sig-prename descclassname">diagram.</code><code class="sig-name descname">nav_graph</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nav_dict</span></em>, <em class="sig-param"><span class="n">output</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/diagram.html#nav_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#diagram.nav_graph" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>nav_graph(nav_dict, output) create a pie chart to display the number of browsers used</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nav_dict</strong> (<em>dict</em>) – path of the graph file</p></li>
+<li><p><strong>output</strong> (<em>str</em>) – output path</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>save a pie chart with all the browsers and their number of connections</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>img</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="diagram.week_graph">
 <code class="sig-prename descclassname">diagram.</code><code class="sig-name descname">week_graph</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dict_week</span></em>, <em class="sig-param"><span class="n">output</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/diagram.html#week_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#diagram.week_graph" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>week_graph(dict_week, output): uses the dict sent by the connection_number() function and returns the connections per week in a graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dict_week</strong> (<em>dict</em>) – pa.connection_week(date_dict)</p></li>
+<li><p><strong>output</strong> (<em>str</em>) – output path</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>saves a histogram of all the connections of the week.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>img</p>
+</dd>
+</dl>
+</dd></dl>
 
 </div>
 <div class="section" id="module-html_creator">
@@ -302,11 +379,17 @@ the week returned is the week ISO number provided by isocalendar()</p>
 <dl class="py function">
 <dt id="html_creator.html_creator">
 <code class="sig-prename descclassname">html_creator.</code><code class="sig-name descname">html_creator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">log_length</span></em>, <em class="sig-param"><span class="n">output_dir</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/html_creator.html#html_creator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#html_creator.html_creator" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>html_creator(log_length, output_dir) uses the {output_dir_img} sent by the diagram.py function and returns return the web page.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>html_creator</strong> – log_length, output_dir)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>returns a web page with a index.html and a style.css</p>
+</dd>
+</dl>
+</dd></dl>
 
-</div>
-<div class="section" id="apache-vi-main-module">
-<h2>apache-vi main Module<a class="headerlink" href="#apache-vi-main-module" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 

@@ -13,6 +13,7 @@ input_file = args.input_file
 output_dir = args.output_dir
 
 def render():
+    print('The statistics are being rendered... ')
     log_length = pa.log_length(input_file)
     nav_dict = pa.browser_number(input_file)
     date_dict = pa.connection_number(input_file)
