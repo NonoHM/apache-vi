@@ -25,7 +25,9 @@ def log_length(log_path=default_log_path):
     :returns: Number of existing lines
     :rtype: str
     '''
-    return sum(1 for line in open(log_path))
+    with open(log_path) as fp:
+        lines = len(fp.readlines())
+        return lines
 
 # Filtrer/Compter le nombre de la liste par type (navigateur, date...)
 def count_filter(filter_obj='Firefox', *list_to_iterate):
@@ -43,6 +45,7 @@ def browser_number(log_path=default_log_path):
     :rtype: dict
     '''
     browser_list = []
+    browser_dict = {}
     search_list = ['Firefox', 'Chrome', 'Safari', 'Brave', 'Opera', 'Edge', 'Internet Explorer']
     with open(log_path) as fp:  
         for entry in parser.parse_lines(fp):
@@ -50,7 +53,10 @@ def browser_number(log_path=default_log_path):
             browser_search = re.compile('|'.join(search_list),re.IGNORECASE).search(browser)
             if browser_search:
                 browser_list.append(browser_search.group(0))
-    return Counter(browser_list)
+    for i in sorted(set(browser_list)):
+        a = count_filter(i, browser_list)
+        browser_dict.update({i: a})
+    return browser_dict
 
 # Filtrer le nombre de connexions par jour
 def connection_number(log_path=default_log_path):
@@ -61,11 +67,16 @@ def connection_number(log_path=default_log_path):
     :returns: Searches when and how many times a connection has been done in the log file
     :rtype: dict
     '''
+    k = 1
     date_list = []
+    date_filtered = {}
     with open(log_path) as fp:  
         for entry in parser.parse_lines(fp):
             date_list.append(str(entry.request_time.date()))
-    return Counter(date_list)
+    for i in sorted(set(date_list)):
+        filtered = count_filter(i,date_list)
+        date_filtered.update({i: filtered })
+    return date_filtered
 
 # Filtre les dates par semaine, 
 # Retourne le numéro de la semaine format ISO - nb total de connexions sur cette semaine
@@ -78,7 +89,22 @@ def connection_week(date_dict):
     :returns: Returns connections per week 
     :rtype: dict
     '''
-    return {datetime.strptime(date, '%Y-%m-%d').strftime('%U'): count for date, count in date_dict.items()}
+    L1 = []
+    L2 = []
+    L3 = []
+    for i in date_dict:
+        date = datetime.strptime(i,"%Y-%m-%d")
+        weekd = date.isocalendar().week
+        L1.append(weekd)
+    for pairs in date_dict.values():
+        L2.append(pairs)
+    for j in range(len(L1)):
+        L3.append({L1[j]: L2[j]})
+    counter = Counter()
+    for d in L3: 
+        counter.update(d)  
+    result = dict(counter)
+    return result
 
 # Filtre les dates par mois, 
 # 2 Arguments, 1er: dictionnaire des jours, 2e: True or False.
@@ -94,15 +120,32 @@ def connection_month(date_dict, switch=True):
     :returns: Returns connections per month
     :rtype: dict
     '''
-    format = '%B' if switch else '%m'
-    return {datetime.strptime(date, '%Y-%m-%d').strftime(format): count for date, count in date_dict.items()}
+    assert switch == True or switch == False
+    L1 = []
+    L2 = []
+    L3 = []
+    for i in date_dict:
+        date = datetime.strptime(i,"%Y-%m-%d")
+        if switch == True:
+            L1.append(date.ctime().split(' ')[1])
+        else:
+            monthd = date.month
+            L1.append(monthd)
+    for pairs in date_dict.values():
+        L2.append(pairs)
+    for j in range(len(L1)):
+        L3.append({L1[j]: L2[j]})
+    counter = Counter()
+    for d in L3: 
+        counter.update(d)  
+    result = dict(counter)
+    return result
         
 
 def main():
     '''
     Main test function
     '''
-    print(f"Il y a {log_length()} lignes dans le log")
     print(f" Le nombre de connexions par type de navigateur est: \n {browser_number()}")
     print(f" Le nombre de connexions par jour est: \n {connection_number()}")
     print(f" Le nombre de connexions par semaine est: \n {connection_week(connection_number())}")
